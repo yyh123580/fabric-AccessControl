@@ -1,0 +1,36 @@
+package Token
+
+import (
+	"encoding/json"
+)
+
+type TokenCreat struct {
+	Subject       Subjects
+	Object        Objects
+	AccessContion AccessContion
+	Action        Action
+}
+
+type Subjects struct {
+	SubjectId string `json:"subjectId"`
+	Trust     string `json:"trust"`
+}
+type Objects struct {
+	ObjectId string `json:"subjectId"`
+	Trust    string `json:"trust"`
+}
+type AccessContion struct {
+	CreatedTime int64 `json:"createdTime"`
+	EndTime     int64 `json:"endTime"`
+}
+type Action struct {
+	SubjectAction string `json:"subjectaction"`
+}
+
+func (T *TokenCreat) ToBytes() []byte {
+	b, err := json.Marshal(*T)
+	if err != nil {
+		return nil
+	}
+	return b
+}
